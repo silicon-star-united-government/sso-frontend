@@ -33,7 +33,7 @@ const [token, setToken] = (function (): Signal<string | null> {
   return [token, setToken]
 })()
 
-const BASE_URL = "http://api.sso.ssug.top:3000"
+const BASE_URL = "https://api.sso.ssug.top"
 
 export { token, setToken }
 
