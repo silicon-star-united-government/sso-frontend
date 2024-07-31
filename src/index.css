@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.all-shadow {
+  box-shadow: 0 0 0 150vmax;
+}
+
+* {
+  scrollbar-width: thin;
+}
+
+.input[disabled] {
+  cursor: not-allowed;
+}
