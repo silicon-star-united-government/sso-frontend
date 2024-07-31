@@ -1,4 +1,4 @@
-import { A, useNavigate } from "@solidjs/router"
+import { A, useLocation, useNavigate, useSearchParams } from "@solidjs/router"
 import { createSignal } from "solid-js"
 import { requestRegister } from "../network"
 import { createDialog } from "../components/Dialog"
@@ -9,6 +9,8 @@ export default function Register() {
   const [username, setUsername] = createSignal("")
   const [password, setPassword] = createSignal("")
   const [gender, setGender] = createSignal<"male" | "female" | "others">("male")
+  const [searchParams] = useSearchParams()
+  const location = useLocation()
   return (
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content flex-col lg:flex-row-reverse">
@@ -30,7 +32,11 @@ export default function Register() {
                 gender: gender()
               }).then((ok) => {
                 if (ok) {
-                  navigate("/info")
+                  if (searchParams["redirect_uri"]) {
+                    window.location.href = searchParams["redirect_uri"]
+                  } else {
+                    navigate("/info")
+                  }
                 } else {
                   createDialog({
                     title: "Registration Failure",
@@ -87,7 +93,7 @@ export default function Register() {
               </select>
             </label>
             <div class="form-control mt-6 join flex flex-row">
-              <A class="btn btn-secondary join-item" href="/login">
+              <A class="btn btn-secondary join-item" href={`/login${location.search}`}>
                 Login
               </A>
               <button
