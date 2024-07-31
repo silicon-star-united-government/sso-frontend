@@ -1,15 +1,37 @@
-import { makePersisted } from "@solid-primitives/storage"
 import { useNavigate } from "@solidjs/router"
-import { createEffect, createSignal } from "solid-js"
+import { createEffect, createSignal, Signal } from "solid-js"
+import CookiesDefault from "js-cookie"
 import type { Faker } from "@faker-js/faker"
 
 let faker!: Faker
 
+const Cookies = CookiesDefault.withAttributes({
+  domain: document.domain == "sso.ssug.top" ? "ssug.top" : document.domain,
+  sameSite: "strict",
+  expires: new Date("9999-12-29 23:59:59")
+  // secure: true
+})
+
 if (import.meta.env.DEV) {
   import("@faker-js/faker").then((module) => (faker = module.faker))
 }
-// eslint-disable-next-line solid/reactivity
-const [token, setToken] = makePersisted(createSignal<string | null>(null))
+
+const [token, setToken] = (function (): Signal<string | null> {
+  const [token, setToken] = createSignal<string | null>(null)
+  const cookieToken = Cookies.get("token")
+  if (cookieToken) {
+    setToken(cookieToken)
+  }
+  createEffect(() => {
+    const getToken = token()
+    if (getToken) {
+      Cookies.set("token", getToken)
+    } else {
+      Cookies.remove("token")
+    }
+  })
+  return [token, setToken]
+})()
 
 const BASE_URL = "http://api.sso.ssug.top:3000"
 

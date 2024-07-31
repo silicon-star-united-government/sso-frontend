@@ -50,11 +50,6 @@ export default function Navbar() {
       <div class="navbar-center hidden md:flex">
         <ul class="menu menu-horizontal px-1 flex gap-1">
           <li>
-            <A href="/" activeClass="active" end>
-              Home
-            </A>
-          </li>
-          <li>
             <A href="/about" activeClass="active" end>
               About
             </A>
