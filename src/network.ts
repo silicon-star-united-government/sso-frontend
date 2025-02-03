@@ -6,7 +6,7 @@ import type { Faker } from "@faker-js/faker"
 let faker!: Faker
 
 const Cookies = CookiesDefault.withAttributes({
-  domain: document.domain == "sso.ssug.top" ? "ssug.top" : document.domain,
+  domain: location.hostname == "sso.ssug.top" ? "ssug.top" : location.hostname,
   sameSite: "strict",
   expires: new Date("9999-12-29 23:59:59")
   // secure: true
@@ -65,11 +65,19 @@ export async function fetchData<T>(
   if (token()) {
     headers["Authorization"] = `Bearer ${token()}`
   }
-  const result = await fetch(BASE_URL + url, {
-    headers,
-    body: JSON.stringify(body),
-    method: "POST"
-  })
+  let result: Response
+  try {
+    result = await fetch(BASE_URL + url, {
+      headers,
+      body: JSON.stringify(body),
+      method: "POST"
+    })
+  } catch (e) {
+    return {
+      ok: false,
+      detail: (e as Error).message
+    }
+  }
   const response = await result.json()
   if (result.ok)
     return {
