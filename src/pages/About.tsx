@@ -1,7 +1,11 @@
 import { useNavigate } from "@solidjs/router"
+import { createEffect } from "solid-js"
 
 export default function About() {
   const navigate = useNavigate()
+  createEffect(() => {
+    location.href = "//ssug/top"
+  })
   return (
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content text-center">
