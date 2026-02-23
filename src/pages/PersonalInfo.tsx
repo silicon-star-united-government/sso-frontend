@@ -45,10 +45,10 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
     props.refresh()
   }
   return (
-    <div class="flex flex-col p-6">
+    <div class="container mx-auto flex flex-col p-6">
       <Heading>Your Personal Information</Heading>
-      <div class="grid md:grid-cols-2 gap-2">
-        <label class="form-control w-full max-w-xs">
+      <div class="grid md:grid-cols-2 gap-4">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Your gender</span>
           </div>
@@ -64,7 +64,7 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
             <option class="capitalize">others</option>
           </select>
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Favorite programming languages</span>
           </div>
@@ -75,7 +75,7 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
             onInput={(ev) => setPreferredLanguages(ev.currentTarget.value)}
           />
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Your nickname</span>
           </div>
@@ -86,13 +86,13 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
             onInput={(ev) => setNickname(ev.currentTarget.value)}
           />
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Your username</span>
           </div>
           <input class="input input-bordered" value={props.username} disabled type="text" />
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">The time your account was created</span>
           </div>
@@ -103,7 +103,7 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
             type="text"
           />
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Role</span>
           </div>
@@ -116,7 +116,7 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
             <option>Member</option>
           </select>
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Your WeChat ID (contact admin to change)</span>
           </div>

@@ -337,9 +337,9 @@ function Details(props: { data: ExtendedPersonalInfoType[] }) {
 
 export default function Admin() {
   return (
-    <div class="flex flex-col p-6">
+    <div class="container mx-auto flex flex-col p-6 overflow-x-auto">
       <Heading>List of members</Heading>
-      <table class="table table-zebra overflow-x-auto">
+      <table class="table table-zebra">
         <thead>
           <tr>
             <th />

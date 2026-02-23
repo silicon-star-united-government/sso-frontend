@@ -45,7 +45,9 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <a class="btn btn-ghost text-xl">Demo</a>
+        <A href="/" class="btn btn-ghost text-xl">
+          SSO System
+        </A>
       </div>
       <div class="navbar-center hidden md:flex">
         <ul class="menu menu-horizontal px-1 flex gap-1">

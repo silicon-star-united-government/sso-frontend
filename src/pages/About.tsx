@@ -10,11 +10,8 @@ export default function About() {
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1 class="text-5xl font-bold">Hello there</h1>
-          <p class="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
-          </p>
+          <h1 class="text-5xl font-bold">About SSO System</h1>
+          <p class="py-6">Providing secure and seamless access to all your applications.</p>
           <button
             class="btn btn-primary"
             onClick={() => {

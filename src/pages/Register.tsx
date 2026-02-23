@@ -15,10 +15,10 @@ export default function Register() {
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="text-center lg:text-left">
-          <h1 class="text-5xl font-bold">Register now!</h1>
+          <h1 class="text-5xl font-bold">Create an Account!</h1>
           <p class="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-            exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
+            Join us today. Create an account to participate in the community, manage your profile,
+            and discover more.
           </p>
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -76,10 +76,10 @@ export default function Register() {
                 }}
               />
             </div>
-            <label class="form-control w-full max-w-xs">
-              <div class="label">
+            <div class="form-control">
+              <label class="label">
                 <span class="label-text">Your gender</span>
-              </div>
+              </label>
               <select
                 class="select select-bordered"
                 value={gender()}
@@ -91,7 +91,7 @@ export default function Register() {
                 <option class="capitalize">female</option>
                 <option class="capitalize">others</option>
               </select>
-            </label>
+            </div>
             <div class="form-control mt-6 join flex flex-row">
               <A class="btn btn-secondary join-item" href={`/login${location.search}`}>
                 Login
