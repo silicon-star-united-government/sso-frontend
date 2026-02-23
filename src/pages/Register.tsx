@@ -2,6 +2,7 @@ import { A, useLocation, useNavigate, useSearchParams } from "@solidjs/router"
 import { createSignal } from "solid-js"
 import { requestRegister } from "../api"
 import { createDialog } from "../components/Dialog"
+import { t } from "../i18n"
 
 export default function Register() {
   const navigate = useNavigate()
@@ -15,16 +16,16 @@ export default function Register() {
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="text-center lg:text-left">
-          <h1 class="text-5xl font-bold">Create an Account!</h1>
+          <h1 class="text-5xl font-bold">{t("create_account")}</h1>
           <p class="py-6">
-            Join us today. Create an account to participate in the community, manage your profile,
-            and discover more.
+            {t("register_desc")}
           </p>
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <form
             class="card-body"
-            onSubmit={() => {
+            onSubmit={(ev) => {
+              ev.preventDefault()
               if (!username() || !password()) return
               requestRegister({
                 username: username(),
@@ -39,8 +40,8 @@ export default function Register() {
                   }
                 } else {
                   createDialog({
-                    title: "Registration Failure",
-                    body: "Consider change a username and try again?"
+                    title: t("register_failure"),
+                    body: t("register_failure_desc")
                   })
                 }
               })
@@ -48,11 +49,11 @@ export default function Register() {
           >
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Username</span>
+                <span class="label-text">{t("username")}</span>
               </label>
               <input
                 type="text"
-                placeholder="Username"
+                placeholder={t("username")}
                 class="input input-bordered"
                 required
                 value={username()}
@@ -63,11 +64,11 @@ export default function Register() {
             </div>
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Password</span>
+                <span class="label-text">{t("password")}</span>
               </label>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={t("password")}
                 class="input input-bordered"
                 required
                 value={password()}
@@ -78,7 +79,7 @@ export default function Register() {
             </div>
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Your gender</span>
+                <span class="label-text">{t("your_gender")}</span>
               </label>
               <select
                 class="select select-bordered"
@@ -87,20 +88,20 @@ export default function Register() {
                   setGender(ev.currentTarget.value as unknown as "male" | "female" | "others")
                 }
               >
-                <option class="capitalize">male</option>
-                <option class="capitalize">female</option>
-                <option class="capitalize">others</option>
+                <option value="male" class="capitalize">{t("male")}</option>
+                <option value="female" class="capitalize">{t("female")}</option>
+                <option value="others" class="capitalize">{t("others")}</option>
               </select>
             </div>
             <div class="form-control mt-6 join flex flex-row">
               <A class="btn btn-secondary join-item" href={`/login${location.search}`}>
-                Login
+                {t("login")}
               </A>
               <button
                 class="btn btn-primary join-item flex-1"
                 disabled={!username() || !password()}
               >
-                Register
+                {t("register")}
               </button>
             </div>
           </form>

@@ -4,6 +4,7 @@ import { useCheckToken } from "../auth"
 import { Heading } from "../components/Heading"
 import { formatDistanceToNow } from "date-fns"
 import { A } from "@solidjs/router"
+import { t } from "../i18n"
 
 function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
   // eslint-disable-next-line solid/reactivity
@@ -41,11 +42,11 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
   }
   return (
     <div class="container mx-auto flex flex-col p-6">
-      <Heading>Your Personal Information</Heading>
+      <Heading>{t("personal_info")}</Heading>
       <div class="grid md:grid-cols-2 gap-4">
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Your gender</span>
+            <span class="label-text">{t("your_gender")}</span>
           </div>
           <select
             class="select select-bordered"
@@ -54,14 +55,14 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
               setGender(ev.currentTarget.value as unknown as PersonalInfoType["gender"])
             }
           >
-            <option class="capitalize">male</option>
-            <option class="capitalize">female</option>
-            <option class="capitalize">others</option>
+            <option value="male" class="capitalize">{t("male")}</option>
+            <option value="female" class="capitalize">{t("female")}</option>
+            <option value="others" class="capitalize">{t("others")}</option>
           </select>
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Favorite programming languages</span>
+            <span class="label-text">{t("fav_langs")}</span>
           </div>
           <input
             class="input input-bordered"
@@ -72,7 +73,7 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Your nickname</span>
+            <span class="label-text">{t("your_nickname")}</span>
           </div>
           <input
             class="input input-bordered"
@@ -83,13 +84,13 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Your username</span>
+            <span class="label-text">{t("your_username")}</span>
           </div>
           <input class="input input-bordered" value={props.username} disabled type="text" />
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">The time your account was created</span>
+            <span class="label-text">{t("account_created")}</span>
           </div>
           <input
             class="input input-bordered"
@@ -100,41 +101,41 @@ function PersonalInfoData(props: PersonalInfoType & { refresh: () => void }) {
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Role</span>
+            <span class="label-text">{t("role")}</span>
           </div>
           <select
             class="select select-bordered"
             value={props.is_admin ? "Admin" : "Member"}
             disabled
           >
-            <option>Admin</option>
-            <option>Member</option>
+            <option value="Admin">{t("admin")}</option>
+            <option value="Member">{t("member")}</option>
           </select>
         </label>
         <label class="form-control w-full">
           <div class="label">
-            <span class="label-text">Your WeChat ID (contact admin to change)</span>
+            <span class="label-text">{t("wx_id")}</span>
           </div>
           <input class="input input-bordered" value={props.wx_id ?? ""} disabled type="text" />
         </label>
       </div>
       <button class="btn btn-primary ml-auto mt-4" disabled={!isValueChanged()} onClick={update}>
-        Change
+        {t("change")}
       </button>
-      <Heading>Other actions</Heading>
+      <Heading>{t("other_actions")}</Heading>
       <Show when={props.is_admin}>
         <div class="join ml-auto mt-4">
           <A class="btn btn-secondary join-item" href="/admin">
-            Go To Admin Dashboard
+            {t("go_admin")}
           </A>
           <button class="btn btn-accent join-item" onClick={requestLogout}>
-            Logout
+            {t("logout")}
           </button>
         </div>
       </Show>
       <Show when={!props.is_admin || !props}>
         <button class="btn btn-accent join-item ml-auto mt-4" onClick={requestLogout}>
-          Logout
+          {t("logout")}
         </button>
       </Show>
     </div>

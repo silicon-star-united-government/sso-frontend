@@ -1,5 +1,6 @@
 import { createUniqueId, For, JSX } from "solid-js"
 import { createStore, produce } from "solid-js/store"
+import { t } from "../i18n"
 
 interface DialogData {
   title: string
@@ -44,7 +45,7 @@ export function Dialog(props: { title: string; body: JSX.Element; id: string }) 
                 }, 100)
               }}
             >
-              Close
+              {t("close")}
             </button>
           </form>
         </div>

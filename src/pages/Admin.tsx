@@ -13,6 +13,7 @@ import { addScore, ExtendedPersonalInfoType, getAllInfo, modifyOtherInfo } from 
 import { formatDistanceToNow } from "date-fns"
 import { createDialog } from "../components/Dialog"
 import { createStore } from "solid-js/store"
+import { t } from "../i18n"
 
 const [info, { refetch }] = createResource(getAllInfo)
 
@@ -78,13 +79,13 @@ function TdSelect(props: {
       ref={mySelect}
     >
       <Show when={props.name == "is_admin"}>
-        <option>Admin</option>
-        <option>Member</option>
+        <option value="Admin">{t("admin")}</option>
+        <option value="Member">{t("member")}</option>
       </Show>
       <Show when={props.name == "gender"}>
-        <option class="capitalize">male</option>
-        <option class="capitalize">female</option>
-        <option class="capitalize">others</option>
+        <option value="male" class="capitalize">{t("male")}</option>
+        <option value="female" class="capitalize">{t("female")}</option>
+        <option value="others" class="capitalize">{t("others")}</option>
       </Show>
     </select>
   )
@@ -190,14 +191,14 @@ function AddScore(props: { username: string; hide: () => void }) {
                 if (!reason()) return
                 addScore(props.username, change(), reason()).then((ok) => {
                   if (!ok) {
-                    createDialog({ title: "Add Score Failure", body: "Make sure you are admin." })
+                    createDialog({ title: t("add_score_failure"), body: t("make_sure_admin") })
                   }
                 })
               }}
             >
               <label class="form-control w-full max-w-xs">
                 <div class="label">
-                  <span class="label-text">The score change</span>
+                  <span class="label-text">{t("score_change")}</span>
                 </div>
                 <input
                   class="input input-bordered"
@@ -221,7 +222,7 @@ function AddScore(props: { username: string; hide: () => void }) {
               </label>
               <label class="form-control w-full max-w-xs">
                 <div class="label">
-                  <span class="label-text">Reason</span>
+                  <span class="label-text">{t("reason")}</span>
                 </div>
                 <input
                   class="input input-bordered"
@@ -232,7 +233,7 @@ function AddScore(props: { username: string; hide: () => void }) {
               </label>
               <div class="ml-auto">
                 <button class="btn btn-primary" disabled={!reason()}>
-                  Confirm
+                  {t("confirm")}
                 </button>
               </div>
             </form>
@@ -274,7 +275,7 @@ function DetailItem(props: { i: ExtendedPersonalInfoType; index: number }) {
             {props.i.preferred_languages.join("; ")}
           </EditableTd>
           <EditableTd username={username()} name="is_admin">
-            {props.i.is_admin ? "Admin" : "Member"}
+            {props.i.is_admin ? t("admin") : t("member")}
           </EditableTd>
           <EditableTd username={username()} name="wx_id">
             {props.i.wx_id ?? ""}
@@ -282,9 +283,9 @@ function DetailItem(props: { i: ExtendedPersonalInfoType; index: number }) {
           <HidableTd name="create_time">
             {formatDistanceToNow(props.i.create_time, { addSuffix: true })}
           </HidableTd>
-          <HidableTd name="score">{props.i.score}</HidableTd>
+          <HidableTd name="score">{props.i.score.toString()}</HidableTd>
           <td class="py-0.5">
-            <div class="tooltip" data-tip="Add score">
+            <div class="tooltip" data-tip={t("add_score")}>
               <button
                 class="btn btn-circle btn-ghost"
                 onClick={() => {
@@ -336,20 +337,20 @@ function Details(props: { data: ExtendedPersonalInfoType[] }) {
 export default function Admin() {
   return (
     <div class="container mx-auto flex flex-col p-6 overflow-x-auto">
-      <Heading>List of members</Heading>
+      <Heading>{t("list_members")}</Heading>
       <table class="table table-zebra">
         <thead>
           <tr>
             <th />
-            <HidableTh name="username">Username</HidableTh>
-            <HidableTh name="nickname">Nickname</HidableTh>
-            <HidableTh name="gender">Gender</HidableTh>
-            <HidableTh name="preferred_languages">Preferred languages</HidableTh>
-            <HidableTh name="is_admin">Role</HidableTh>
-            <HidableTh name="wx_id">Wechat ID</HidableTh>
-            <HidableTh name="create_time">Create time</HidableTh>
-            <HidableTh name="score">Score</HidableTh>
-            <th class="select-none">Actions</th>
+            <HidableTh name="username">{t("username")}</HidableTh>
+            <HidableTh name="nickname">{t("nickname")}</HidableTh>
+            <HidableTh name="gender">{t("gender")}</HidableTh>
+            <HidableTh name="preferred_languages">{t("preferred_langs")}</HidableTh>
+            <HidableTh name="is_admin">{t("role")}</HidableTh>
+            <HidableTh name="wx_id">{t("wechat_id")}</HidableTh>
+            <HidableTh name="create_time">{t("create_time")}</HidableTh>
+            <HidableTh name="score">{t("score")}</HidableTh>
+            <th class="select-none">{t("actions")}</th>
           </tr>
         </thead>
         <tbody>

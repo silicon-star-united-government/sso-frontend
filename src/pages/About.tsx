@@ -1,5 +1,6 @@
 import { useNavigate } from "@solidjs/router"
 import { createEffect } from "solid-js"
+import { t } from "../i18n"
 
 export default function About() {
   const navigate = useNavigate()
@@ -10,15 +11,15 @@ export default function About() {
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content text-center">
         <div class="max-w-md">
-          <h1 class="text-5xl font-bold">About SSO System</h1>
-          <p class="py-6">Providing secure and seamless access to all your applications.</p>
+          <h1 class="text-5xl font-bold">{t("about_sso")}</h1>
+          <p class="py-6">{t("about_desc")}</p>
           <button
             class="btn btn-primary"
             onClick={() => {
               navigate("/info")
             }}
           >
-            Get Started
+            {t("get_started")}
           </button>
         </div>
       </div>

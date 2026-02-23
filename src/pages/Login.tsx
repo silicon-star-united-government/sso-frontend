@@ -2,6 +2,7 @@ import { createSignal } from "solid-js"
 import { createDialog } from "../components/Dialog"
 import { A, useLocation, useNavigate, useSearchParams } from "@solidjs/router"
 import { requestLogin } from "../api"
+import { t } from "../i18n"
 
 export default function Login() {
   const [username, setUsername] = createSignal("")
@@ -13,10 +14,9 @@ export default function Login() {
     <div class="hero bg-base-200 flex-1">
       <div class="hero-content flex-col lg:flex-row-reverse">
         <div class="text-center lg:text-left">
-          <h1 class="text-5xl font-bold">Welcome Back!</h1>
+          <h1 class="text-5xl font-bold">{t("welcome_back")}</h1>
           <p class="py-6">
-            Sign in to access your account, manage your personal information, and explore the
-            system.
+            {t("login_desc")}
           </p>
         </div>
         <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -34,8 +34,8 @@ export default function Login() {
                   }
                 } else {
                   createDialog({
-                    title: "Login failure",
-                    body: "Your username or password is incorrect."
+                    title: t("login_failure"),
+                    body: t("login_failure_desc")
                   })
                 }
               })
@@ -43,11 +43,11 @@ export default function Login() {
           >
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Username</span>
+                <span class="label-text">{t("username")}</span>
               </label>
               <input
                 type="text"
-                placeholder="Username"
+                placeholder={t("username")}
                 class="input input-bordered"
                 required
                 value={username()}
@@ -58,11 +58,11 @@ export default function Login() {
             </div>
             <div class="form-control">
               <label class="label">
-                <span class="label-text">Password</span>
+                <span class="label-text">{t("password")}</span>
               </label>
               <input
                 type="password"
-                placeholder="Password"
+                placeholder={t("password")}
                 class="input input-bordered"
                 required
                 value={password()}
@@ -76,24 +76,24 @@ export default function Login() {
                   class="label-text-alt link link-hover"
                   onClick={() => {
                     createDialog({
-                      title: "Not Implemented",
-                      body: "Please contact the administrator in order to recover the access to your account."
+                      title: t("not_implemented"),
+                      body: t("not_implemented_desc")
                     })
                   }}
                 >
-                  Forgot password?
+                  {t("forgot_password")}
                 </a>
               </label>
             </div>
             <div class="form-control mt-6 join flex flex-row">
               <A class="btn btn-secondary join-item" href={`/register${location.search}`}>
-                Register
+                {t("register")}
               </A>
               <button
                 class="btn btn-primary join-item flex-1"
                 disabled={!username() || !password()}
               >
-                Login
+                {t("login")}
               </button>
             </div>
           </form>
