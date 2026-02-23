@@ -1,11 +1,6 @@
 import { createEffect, createMemo, createResource, createSignal, Show, Suspense } from "solid-js"
-import {
-  getPersonalInfo,
-  modifyPersonalInfo,
-  PersonalInfoType,
-  requestLogout,
-  useCheckToken
-} from "../network"
+import { getPersonalInfo, modifyPersonalInfo, PersonalInfoType, requestLogout } from "../api"
+import { useCheckToken } from "../auth"
 import { Heading } from "../components/Heading"
 import { formatDistanceToNow } from "date-fns"
 import { A } from "@solidjs/router"

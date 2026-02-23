@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js"
 import { createDialog } from "../components/Dialog"
 import { A, useLocation, useNavigate, useSearchParams } from "@solidjs/router"
-import { requestLogin } from "../network"
+import { requestLogin } from "../api"
 
 export default function Login() {
   const [username, setUsername] = createSignal("")

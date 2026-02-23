@@ -1,6 +1,6 @@
 import { A, useLocation, useNavigate, useSearchParams } from "@solidjs/router"
 import { createSignal } from "solid-js"
-import { requestRegister } from "../network"
+import { requestRegister } from "../api"
 import { createDialog } from "../components/Dialog"
 
 export default function Register() {

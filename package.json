@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
-    "@faker-js/faker": "^8.4.1",
     "@types/js-cookie": "^3.0.6",
     "autoprefixer": "^10.4.19",
     "daisyui": "^4.12.10",

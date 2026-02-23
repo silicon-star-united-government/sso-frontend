@@ -1,6 +1,7 @@
 import { A } from "@solidjs/router"
 import { createResource, Show } from "solid-js"
-import { getPersonalInfo, token } from "../network"
+import { getPersonalInfo } from "../api"
+import { token } from "../auth"
 
 export function Username() {
   const [personalInfo] = createResource(getPersonalInfo)

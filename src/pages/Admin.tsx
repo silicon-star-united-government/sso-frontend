@@ -9,7 +9,7 @@ import {
   splitProps
 } from "solid-js"
 import { Heading } from "../components/Heading"
-import { addScore, ExtendedPersonalInfoType, getAllInfo, modifyOtherInfo } from "../network"
+import { addScore, ExtendedPersonalInfoType, getAllInfo, modifyOtherInfo } from "../api"
 import { formatDistanceToNow } from "date-fns"
 import { createDialog } from "../components/Dialog"
 import { createStore } from "solid-js/store"
@@ -205,7 +205,6 @@ function AddScore(props: { username: string; hide: () => void }) {
                   type="text"
                   onInput={(ev) => {
                     const value = parseInt(ev.currentTarget.value, 10)
-                    console.log({ value })
                     if (
                       Number.isNaN(value) ||
                       !Number.isFinite(value) ||
@@ -215,7 +214,6 @@ function AddScore(props: { username: string; hide: () => void }) {
                       ev.currentTarget.value = change().toString()
                       return
                     }
-                    console.log({ value })
                     setChange(value)
                     ev.currentTarget.value = value.toString()
                   }}
